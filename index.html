@@ -972,6 +972,21 @@ button .arrow {
 
   #home .sp-kicker:before{display:none!important}
   #home .sp-kicker{gap:0}
+  #home .sp-plan-cover .sp-cover-meta,
+  #home .sp-plan-cover .sp-cover-meta *{color:#fff!important}
+  #home .sp-plan-cover .sp-cover-meta{text-shadow:0 1px 5px rgba(0,0,0,.75)}
+  #home .sp-plan-cover .sp-cover-mark{border-color:rgba(255,255,255,.78)!important}
+
+#logoInstagramPortfolio .arch-card{transition:transform 650ms cubic-bezier(.25,.1,.25,1),box-shadow 800ms cubic-bezier(.25,.1,.25,1);will-change:transform}
+#logoInstagramPortfolio .arch-caption{transition:opacity 650ms cubic-bezier(.25,.1,.25,1),transform 650ms cubic-bezier(.25,.1,.25,1)}
+#logoPortfolioStage{transform:translateY(16px)}
+#logoInstagramPortfolio .arch-caption,#logoInstagramPortfolio .portfolio-status{display:none!important}
+@media(min-width:601px) and (max-width:850px){
+  #logoInstagramPortfolio .arch-gallery{height:370px!important;padding:18px 0 12px!important}
+  #logoInstagramPortfolio .portfolio-controls{position:relative;z-index:5;margin-top:-24px!important}
+}
+@media(max-width:600px){#logoInstagramPortfolio .portfolio-controls{margin-top:0!important}}
+@media(prefers-reduced-motion:reduce){#logoInstagramPortfolio .arch-card,#logoInstagramPortfolio .arch-caption{transition:none!important}}
 </style>
 
 </head>
@@ -1006,7 +1021,7 @@ button .arrow {
           <div class="mega-service-list">
             <span class="nav-menu-item featured">Semua Layanan</span>
             <a class="nav-menu-item" href="https://creativeinstd.lynk.id/p/kelolasosmed">Kelola Sosial Media</a>
-            <span class="nav-menu-item">Paket Feed Satuan</span>
+            <a class="nav-menu-item" href="https://creativeinstd.github.io/feedsatuan">Paket Feed Satuan</a>
             <a class="nav-menu-item" href="https://creativeinstd.github.io/marketplace/">Desain Marketplace</a>
             <span class="nav-menu-item">Kontrak Desainer</span>
             <a class="nav-menu-item" href="https://creativeinstd.github.io/logo" aria-current="page">Logo</a>
@@ -1205,6 +1220,45 @@ button .arrow {
     </div>
   </section>
 
+  <section class="portfolio-section" id="logoInstagramPortfolio" aria-labelledby="logo-portfolio-title">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="logo-portfolio-title">Ragam karakter,<br><em>satu identitas yang kuat.</em></h2>
+      </div>
+      <div class="portfolio-shell">
+        <div class="arch-gallery" role="group" aria-label="Galeri portofolio logo Creativein.ig">
+          <div class="arch-stage" id="logoPortfolioStage">
+            <article class="arch-card" tabindex="0" data-title="Identitas Starter" data-category="LOGO / STARTER">
+              <img src="https://drive.google.com/thumbnail?id=1PAFCOn_V7gGwDW7HWb2PD_QvmKDMqwrT&amp;sz=w1200" alt="Contoh identitas visual paket Starter" draggable="false" loading="lazy">
+              <div class="arch-caption"><b>Identitas Starter</b><small>Logo design / 01</small></div>
+            </article>
+            <article class="arch-card" tabindex="0" data-title="Identitas Premium" data-category="LOGO / PREMIUM">
+              <img src="https://drive.google.com/thumbnail?id=1AH9zVvUFyaHec8227vRXVGBK_T-Ji4WY&amp;sz=w1200" alt="Contoh identitas visual paket Premium" draggable="false" loading="lazy">
+              <div class="arch-caption"><b>Identitas Premium</b><small>Logo design / 02</small></div>
+            </article>
+            <article class="arch-card" tabindex="0" data-title="Identitas Ultimate" data-category="LOGO / ULTIMATE">
+              <img src="https://drive.google.com/thumbnail?id=1tk6eBqCqjzpe8AQdZnNIM-OX4B7eLaZy&amp;sz=w1200" alt="Contoh identitas visual paket Ultimate" draggable="false" loading="lazy">
+              <div class="arch-caption"><b>Identitas Ultimate</b><small>Logo design / 03</small></div>
+            </article>
+          </div>
+        </div>
+        <div class="portfolio-controls" aria-label="Kontrol galeri logo">
+          <button class="portfolio-control" type="button" id="logoPortfolioPrev" aria-label="Karya sebelumnya">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+          </button>
+          <span class="portfolio-count" id="logoPortfolioCount" aria-live="polite">01 / 07</span>
+          <button class="portfolio-control" type="button" id="logoPortfolioNext" aria-label="Karya berikutnya">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="portfolio-foot">
+        <p>Karya terbaru juga bisa kamu lihat di Instagram Creativein.ig.</p>
+        <a class="portfolio-link" href="https://creativeinstd.lynk.id/p/portofolio-creativeinstd" target="_blank" rel="noopener noreferrer">Lihat Portofolio <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
   <section class="sp-process" aria-labelledby="logo-process-title">
     <div class="sp-wrap sp-process-layout">
       <div class="sp-process-copy">
@@ -1265,6 +1319,166 @@ button .arrow {
   </div>
   <div class="footer-bottom"><span>© 2026 Creativein.std. All rights reserved.</span></div>
 </footer>
+
+<script id="logo-instagram-portfolio">
+(() => {
+  const section = document.getElementById("logoInstagramPortfolio");
+  const stage = document.getElementById("logoPortfolioStage");
+  const count = document.getElementById("logoPortfolioCount");
+  const previous = document.getElementById("logoPortfolioPrev");
+  const next = document.getElementById("logoPortfolioNext");
+  if (!section || !stage || !count || !previous || !next) return;
+
+  let cards = Array.from(stage.querySelectorAll(".arch-card"));
+  let active = Math.floor(cards.length / 2);
+
+  function render() {
+    if (!cards.length) return;
+    const mobile = window.matchMedia("(max-width:760px)").matches;
+    const width = stage.clientWidth;
+    const cardWidth = mobile ? Math.min(148, width * .31) : Math.min(184, width * .184);
+    const gap = cardWidth * .58;
+
+    cards.forEach((card, index) => {
+      const offset = index - active;
+      const x = offset * gap;
+      const y = Math.abs(offset) * 18;
+      const rotation = offset * 6;
+      const selected = index === active;
+      card.style.transform = selected
+        ? "translate(-50%,-50%) translateY(-16px) scale(1.08)"
+        : "translate(-50%,-50%) translate(" + x + "px," + y + "px) rotate(" + rotation + "deg)";
+      card.style.zIndex = String(selected ? cards.length + 1 : cards.length - Math.abs(offset));
+      card.classList.toggle("is-active", selected);
+      card.setAttribute("aria-label", (card.dataset.title || "Karya logo") + (selected ? ", dipilih" : ""));
+    });
+
+    count.textContent = String(active + 1).padStart(2, "0") + " / " + String(cards.length).padStart(2, "0");
+  }
+
+  function move(step) {
+    if (!cards.length) return;
+    active = (active + step + cards.length) % cards.length;
+    render();
+  }
+
+  function bindCards() {
+    cards = Array.from(stage.querySelectorAll(".arch-card"));
+    cards.forEach((card, index) => {
+      card.addEventListener("focus", () => { active = index; render(); });
+      card.addEventListener("click", () => { active = index; render(); });
+      card.addEventListener("keydown", event => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          active = index;
+          render();
+        }
+        if (event.key === "ArrowLeft") move(-1);
+        if (event.key === "ArrowRight") move(1);
+      });
+    });
+    active = Math.floor(cards.length / 2);
+    render();
+  }
+
+  previous.addEventListener("click", () => move(-1));
+  next.addEventListener("click", () => move(1));
+  window.addEventListener("resize", render);
+  bindCards();
+
+  // Instagram Graph API connection copied from Home.html.
+  const INSTAGRAM_ACCESS_TOKEN='IGAAf84Mo5bOhBZAGFxZADRHaEVqOG9Hblk0amE4WjdiUHEtLUNMZATF3di1PSmxfbWJGOUpPb3d6NXlocjhtYTVRR1p0dkxfb05ucU9rWjBKWEhPczRqb1NWYU90Qm91bHRmbW5SZA0FPczRvWVhtV0hoLUZAQZAEtMcjBTZA1BVX0taOAZDZD';
+  const INSTAGRAM_GRAPH_HOST='graph.instagram.com';
+  const INSTAGRAM_API_VERSION='v27.0';
+  (async()=>{
+    if(!INSTAGRAM_ACCESS_TOKEN || INSTAGRAM_ACCESS_TOKEN==='PASTE_INSTAGRAM_ACCESS_TOKEN_HERE')return;
+    try{
+      const endpoint=new URL('https://'+INSTAGRAM_GRAPH_HOST+'/'+INSTAGRAM_API_VERSION+'/me/media');
+      endpoint.searchParams.set('fields','id,caption,media_type,media_url,thumbnail_url,permalink,timestamp');
+      endpoint.searchParams.set('limit','7');
+      endpoint.searchParams.set('access_token',INSTAGRAM_ACCESS_TOKEN);
+      const response=await fetch(endpoint);
+      if(!response.ok)return;
+      const result=await response.json();
+      const posts=(result.data||[]).filter(post=>post.media_type==='IMAGE'||post.media_type==='CAROUSEL_ALBUM');
+      if(!posts.length)return;
+
+      const instagramCards=posts.slice(0,7).map((item,index)=>{
+        const captionText=(item.caption||'').replace(/\s+/g,' ').trim();
+        const titleText=captionText.slice(0,52)||'Karya Instagram '+(index+1);
+        const card=document.createElement('article');
+        card.className='arch-card';
+        card.tabIndex=0;
+        card.dataset.title=titleText;
+        card.dataset.category='INSTAGRAM / '+String(index+1).padStart(2,'0');
+
+        const image=document.createElement('img');
+        image.src=item.media_url||item.thumbnail_url;
+        image.alt=captionText.slice(0,180)||'Karya logo Creativein.ig';
+        image.draggable=false;
+        image.loading='lazy';
+        const caption=document.createElement('div');
+        caption.className='arch-caption';
+        const title=document.createElement('b');
+        title.textContent=titleText;
+        const meta=document.createElement('small');
+        meta.textContent=card.dataset.category;
+        caption.append(title,meta);
+        card.append(image,caption);
+        if(item.permalink)card.addEventListener('dblclick',()=>window.open(item.permalink,'_blank','noopener,noreferrer'));
+        return card;
+      });
+      stage.replaceChildren(...instagramCards);
+      bindCards();
+    }catch(error){
+      console.warn('Instagram portfolio could not be loaded.',error);
+    }
+  })();
+})();
+</script>
+
+<script id="logo-portfolio-auto-ease-controller">
+/* Match Home.html: autoplay only while the logo portfolio is visible. */
+(function(){
+  const section=document.getElementById('logoInstagramPortfolio');
+  const nextButton=document.getElementById('logoPortfolioNext');
+  const stage=document.getElementById('logoPortfolioStage');
+  if(!section||!nextButton||!stage)return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+
+  let timer=null;
+  let isInViewport=false;
+  const interval=2000;
+  function advance(){
+    if(!isInViewport||document.hidden)return;
+    if(stage.querySelectorAll('.arch-card').length>1)nextButton.click();
+  }
+  function start(){
+    if(timer||!isInViewport||document.hidden)return;
+    advance();
+    timer=window.setInterval(advance,interval);
+  }
+  function stop(){
+    if(timer){window.clearInterval(timer);timer=null;}
+  }
+
+  const observer=new IntersectionObserver(entries=>{
+    const entry=entries[0];
+    isInViewport=!!entry&&entry.isIntersecting&&entry.intersectionRatio>=0.2;
+    if(isInViewport)start();
+    else stop();
+  },{threshold:[0,0.2,0.5]});
+  observer.observe(section);
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden)stop();
+    else if(isInViewport)start();
+  });
+  section.addEventListener('touchstart',stop,{passive:true});
+  section.addEventListener('touchend',function(){
+    window.setTimeout(function(){if(isInViewport&&!document.hidden)start();},900);
+  },{passive:true});
+})();
+</script>
+
 </body>
 </html>
-
